@@ -1,4 +1,4 @@
-# HL7 parse by Golang
+# HL7 parser by Golang
 ## About
 The parser takes an Hl7 message passed and return a multi-dimensional array as:
 * A *message* is a list of segments which are separated by line
