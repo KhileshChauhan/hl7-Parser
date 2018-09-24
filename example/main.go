@@ -36,4 +36,15 @@ func main() {
 			fmt.Printf("The patient is %s %s.\n", firstName, lastName)
 		}
 	}
+	// Change patient first name and create a new message
+	for _, segment := range Hl7Message {
+		// Find the segment name
+		segmentName := string(segment[0][0][0][0])
+		if segmentName == "PID" {
+			segment[5][0][1][0] = []byte("Alex")
+		}
+	}
+
+	newMessage, err := hl7.Encode(Hl7Message)
+	fmt.Printf("---------\n%s\n", newMessage)
 }
