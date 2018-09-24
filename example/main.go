@@ -18,7 +18,7 @@ var (
 
 func main() {
 	// Extract messages from file. Each message has several line
-	Hl7Message, err := hl7.Unmarshal(message)
+	Hl7Message, err := hl7.Decode(message)
 	if err != nil {
 		panic(err)
 	}

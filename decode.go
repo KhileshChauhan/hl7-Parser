@@ -33,8 +33,8 @@ var (
 	}
 )
 
-// Unmarshal takes the message passed and returns the segments of the hl7 message.
-func Unmarshal(message []byte) (Hl7Message, error) {
+// Decode takes the message passed and returns the segments of the hl7 message.
+func Decode(message []byte) (Hl7Message, error) {
 
 	if len(message) == 0 {
 		return nil, errors.New("[E0002] No data to unmarshal")
