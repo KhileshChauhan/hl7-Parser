@@ -48,7 +48,7 @@ func TestDecode(t *testing.T) {
 	var firstName hl7.Hl7Field
 	for _, segment := range Hl7Message {
 		// Find the segment name
-		segmentName := string(segment[0][0][0][0])
+		segmentName := segment.AtIndex("0.0.0.0")
 		if segmentName == "PID" {
 			lastName = segment[5][0][0][0]
 			firstName = segment[5][0][1][0]

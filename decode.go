@@ -3,6 +3,8 @@ package hl7
 import (
 	"bytes"
 	"errors"
+	"strconv"
+	"strings"
 )
 
 type (
@@ -76,4 +78,19 @@ func DecodeSegment(bSegment []byte) Hl7Segment {
 		segment = append(segment, repeated)
 	}
 	return segment
+}
+
+func (hl7Segment Hl7Segment) AtIndex(path string) (ret string) {
+	defer func() {
+		if recover() != nil {
+			ret = ""
+		}
+	}()
+	idxs := strings.Split(path, ".")
+	idxs_int := make([]int, len(idxs))
+	for i, idx := range idxs {
+		v, _ := strconv.Atoi(idx)
+		idxs_int[i] = v
+	}
+	return string(hl7Segment[idxs_int[0]][idxs_int[1]][idxs_int[2]][idxs_int[3]])
 }
